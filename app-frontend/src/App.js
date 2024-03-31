@@ -1,10 +1,12 @@
 import './App.css';
+import TextFieldComponent from './components/textField';
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
+    <div id="title">
+      <h1>Emotions Classification App</h1>
+      <TextFieldComponent />
     </div>
   );
 }
 
-export default App;

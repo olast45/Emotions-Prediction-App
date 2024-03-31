@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
+import '../css/textField.css'
 
 const TextFieldComponent = () => {
     const [sentence, setSentence] = useState("");

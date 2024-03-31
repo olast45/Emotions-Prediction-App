@@ -4,14 +4,17 @@ version = "0.1.0"
 description = ""
 authors = ["olast45"]
 readme = "README.md"
-packages = [{include = "app_backend"}]
+packages = [{include = "app-backend"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
 fastapi = "^0.110.0"
-uvicorn = "^0.29.0"
 xgboost = "^2.0.3"
+scikit-learn = "1.2.2"
 
+
+[tool.poetry.group.dev.dependencies]
+uvicorn = "^0.29.0"
 
 [build-system]
 requires = ["poetry-core"]

@@ -4,9 +4,23 @@ import sys
 sys.path.append('utils')
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from functions import clean_data, remove_stopwords_and_lemmatize
 
 app = FastAPI()
+
+# This middleware adds CORS headers to HTTP responses, allowing communication
+# between the frontend and backend even if they are hosted on different domains or ports
+
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 def label_to_emotion(label: int) -> str:
     label_to_emotion_dict = {

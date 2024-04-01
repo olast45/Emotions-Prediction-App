@@ -4,13 +4,11 @@ import '../css/textField.css'
 
 const TextFieldComponent = () => {
     const [sentence, setSentence] = useState("");
-    const [prediction, setPrediction] = useState("");
 
     const sendTextToModel = () => {
         fetch(`http://localhost:8000/predict?sentence=${encodeURIComponent(sentence)}`)
         .then((response) => response.json())
         .then((data) => {
-            setPrediction(data);
             console.log(data);
         })
         .catch((error) => {
@@ -19,11 +17,7 @@ const TextFieldComponent = () => {
     };
 
     useEffect(() => {
-        if (sentence.trim() !== "") {
-            sendTextToModel();
-        } else {
-            setPrediction("");
-        }
+        sendTextToModel();
     }, [sentence]);    
 
     return (
@@ -39,7 +33,6 @@ const TextFieldComponent = () => {
             <h3>Your Entered Sentence is: {sentence} </h3>
         </div>
     );
-
 };
 
 export default TextFieldComponent;

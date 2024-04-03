@@ -1,0 +1,47 @@
+#my-component {
+    background-image: url('../../public/emotions.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 100%;
+    text-align: left;
+    margin: auto;
+    margin-top: 5%;
+    max-width: 60%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: rgba(114, 105, 155, 0.6); /* Adjust the alpha value (0.9) to change the transparency */
+}
+  
+#my-component h2 {
+    font-size: 25px;
+    margin-bottom: 20px;
+    color: #dbd4d4;
+  }
+  
+#my-component h3 {
+   font-size: 25px;
+    margin-top: 24px;
+    color: #ebe4e4;
+  }
+  
+#my-component .MuiInputBase-input {
+    
+    font-size: 16px;
+    padding: 10px;
+    border: none;
+    background-color:rgba(251, 250, 255, 0.4);
+    border-radius: 6px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+#my-component .MuiInputBase-input:focus {
+    outline: none;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1), 0 0 0 2px #4db6ac;
+  }
+
+.TextField {
+  width: 35%;
+}
+  
+  

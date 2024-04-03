@@ -1,7 +1,7 @@
 import uvicorn
 import pickle
 import sys
-sys.path.append('utils')
+sys.path.append('../utils')
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -35,11 +35,11 @@ def label_to_emotion(label: int) -> str:
      
 
 # Load the model from the pickle file
-with open('models/emotions_classifier_model.pkl', 'rb') as file:
+with open('../models/emotions_classifier_model.pkl', 'rb') as file:
     model = pickle.load(file)
 
 # Load the tfidf vectorizer from the pickle file
-with open('models/tfidf.pkl', 'rb') as file:
+with open('../models/tfidf.pkl', 'rb') as file:
     tfidf_vectorizer = pickle.load(file)
     
 @app.get("/predict")

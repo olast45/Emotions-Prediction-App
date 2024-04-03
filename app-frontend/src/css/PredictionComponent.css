@@ -1,4 +1,4 @@
-#text-component {
+#my-component {
     background-image: url('../../public/emotions.png');
     background-size: contain;
     background-repeat: no-repeat;
@@ -13,19 +13,19 @@
     background-color: rgba(114, 105, 155, 0.6); /* Adjust the alpha value (0.9) to change the transparency */
 }
   
-#text-component h2 {
+#my-component h2 {
     font-size: 25px;
     margin-bottom: 20px;
     color: #dbd4d4;
   }
   
-#text-component h3 {
+#my-component h3 {
    font-size: 25px;
     margin-top: 24px;
     color: #ebe4e4;
   }
   
-#text-component .MuiInputBase-input {
+#my-component .MuiInputBase-input {
     
     font-size: 16px;
     padding: 10px;
@@ -35,7 +35,7 @@
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
-#text-component .MuiInputBase-input:focus {
+#my-component .MuiInputBase-input:focus {
     outline: none;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1), 0 0 0 2px #4db6ac;
   }

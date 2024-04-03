@@ -1,5 +1,5 @@
 import "./css/App.css";
-import TextFieldComponent from "./components/textField";
+import PredictionComponent from "./components/PredictionComponent";
 
 export default function App() {
   return (
@@ -7,7 +7,7 @@ export default function App() {
       <div id="title">
         <h1>Emotions Prediction App</h1>
       </div>
-      <TextFieldComponent />
+      <PredictionComponent />
     </>
   );
 }

@@ -5,6 +5,7 @@ sys.path.append('../utils')
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from functions import clean_data, remove_stopwords_and_lemmatize
 
 app = FastAPI()
@@ -43,12 +44,16 @@ with open('../models/tfidf.pkl', 'rb') as file:
     tfidf_vectorizer = pickle.load(file)
     
 @app.get("/predict")
-def model_prediction(sentence: str) -> str:
+def model_prediction(sentence: str) -> JSONResponse:
 	sentence = clean_data(sentence)
 	sentence = remove_stopwords_and_lemmatize(sentence)
 	sentence_tfidf = tfidf_vectorizer.transform([sentence])
 	prediction = model.predict(sentence_tfidf)
-	return label_to_emotion(prediction[0])
+	probabilities = model.predict_proba(sentence_tfidf)[0].tolist()
+	labels = [label_to_emotion(label) for label in model.classes_]
+	print(probabilities)
+	prediction_probabilities = list(zip(labels, probabilities))
+	return JSONResponse(content={"emotion": label_to_emotion(prediction[0]), "probabilities": prediction_probabilities})
 
 
 if __name__ == "__main__":

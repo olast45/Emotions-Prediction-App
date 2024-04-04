@@ -46,19 +46,42 @@ with open('../models/tfidf.pkl', 'rb') as file:
 @app.get("/predict")
 def model_prediction(sentence: str) -> JSONResponse:
     """
-    Predicts the emotion label and probabilities for each emotion to be predicted for the given input sentence.
+    Predicts the emotion label for the given input sentence.
 
     Parameters:
     - sentence (str): The input sentence to make the prediction for.
 
     Returns:
-    - JSONResponse: A JSON response containing the predicted emotion label and the list of all emotions and their corresponding probabilities.
+    - JSONResponse: A JSON response containing the predicted emotion label.
 
     This function performs the following steps:
     1. Cleans the input sentence by applying the `clean_data` function.
     2. Removes stopwords and lemmatizes the cleaned sentence using the `remove_stopwords_and_lemmatize` function.
     3. Transforms the preprocessed sentence into a TF-IDF vector using the `tfidf_vectorizer` transformer.
     4. Predicts the emotion label for the TF-IDF vector using the trained model.
+    8. Returns a JSON response.
+    """
+    sentence = clean_data(sentence)
+    sentence = remove_stopwords_and_lemmatize(sentence)
+    sentence_tfidf = tfidf_vectorizer.transform([sentence])
+    prediction = model.predict(sentence_tfidf)
+    return JSONResponse(content={"emotion": label_to_emotion(prediction[0])})
+
+@app.get("/predict_proba")
+def model_predict_probabilities(sentence: str) -> JSONResponse:
+    """
+    Predicts probabilities for each emotion to be predicted for the given input sentence.
+
+    Parameters:
+    - sentence (str): The input sentence to make the prediction for.
+
+    Returns:
+    - JSONResponse: A JSON response containing the list of all emotions and their corresponding probabilities.
+
+    This function performs the following steps:
+    1. Cleans the input sentence by applying the `clean_data` function.
+    2. Removes stopwords and lemmatizes the cleaned sentence using the `remove_stopwords_and_lemmatize` function.
+    3. Transforms the preprocessed sentence into a TF-IDF vector using the `tfidf_vectorizer` transformer.
     5. Computes the probabilities of each emotion class for the input sentence using the trained model and converts it to a list.
     6. Maps the emotion class labels to their corresponding emotion names using the `label_to_emotion` function.
     7. Constructs a list of tuples, where each tuple contains an emotion name and its corresponding probability.
@@ -67,11 +90,10 @@ def model_prediction(sentence: str) -> JSONResponse:
     sentence = clean_data(sentence)
     sentence = remove_stopwords_and_lemmatize(sentence)
     sentence_tfidf = tfidf_vectorizer.transform([sentence])
-    prediction = model.predict(sentence_tfidf)
     probabilities = model.predict_proba(sentence_tfidf)[0].tolist()
     labels = [label_to_emotion(label) for label in model.classes_]
     prediction_probabilities = list(zip(labels, probabilities))
-    return JSONResponse(content={"emotion": label_to_emotion(prediction[0]), "probabilities": prediction_probabilities})
+    return JSONResponse(content={"probabilities": prediction_probabilities})
 
 
 if __name__ == "__main__":

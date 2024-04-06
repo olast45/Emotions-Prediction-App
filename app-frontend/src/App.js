@@ -7,7 +7,7 @@ const App = () => {
     const [prediction, setPrediction] = useState("");
 
     useEffect(() => {
-        const sendTextToModel = () => {
+        const getPrediction = () => {
             if (sentence.trim() !== "") {
                 fetch(`http://localhost:8000/predict?sentence=${encodeURIComponent(sentence)}`)
                 .then((response) => response.json())
@@ -23,7 +23,7 @@ const App = () => {
             }
         };
     
-        sendTextToModel();
+        getPrediction();
     }, [sentence]);    
 
     return (

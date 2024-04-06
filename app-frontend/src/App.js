@@ -1,6 +1,7 @@
 import "./css/App.css";
 import React, { useState, useEffect } from "react";
 import EmotionPrediction from "./components/EmotionPrediction";
+import EmotionsProbabilities from "./components/EmotionsProbabilities";
 
 const App = () => {
     const [sentence, setSentence] = useState("");
@@ -51,6 +52,7 @@ const App = () => {
             <h1>Emotions Prediction App</h1>
         </div>
         <EmotionPrediction sentence={sentence} prediction={prediction} setSentence={setSentence} />
+        <EmotionsProbabilities probabilities={probabilities} />
       </>
   );
 };

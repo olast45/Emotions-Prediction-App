@@ -5,6 +5,7 @@ import EmotionPrediction from "./components/EmotionPrediction";
 const App = () => {
     const [sentence, setSentence] = useState("");
     const [prediction, setPrediction] = useState("");
+    const [probabilities, setProbabilities] = useState([]);
 
     useEffect(() => {
         const getPrediction = () => {
@@ -22,8 +23,26 @@ const App = () => {
                 setPrediction("");
             }
         };
+
+        const getProbabilities = () => {
+            if (sentence.trim() !== "") {
+                fetch(`http://localhost:8000/predict_proba?sentence=${encodeURIComponent(sentence)}`)
+                .then((response) => response.json())
+                .then((data) => {
+                    setProbabilities(data.probabilities);
+                    console.log(data.probabilities);
+                })
+                .catch((error) => {
+                    console.error("Error fetching probabilities:", error);
+                });
+            }
+            else {
+                setProbabilities("");
+            }
+        };
     
         getPrediction();
+        getProbabilities();
     }, [sentence]);    
 
     return (

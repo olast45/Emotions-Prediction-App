@@ -6,25 +6,25 @@ const App = () => {
     const [sentence, setSentence] = useState("");
     const [prediction, setPrediction] = useState("");
 
-    const sendTextToModel = () => {
-        if (sentence.trim() !== "") {
-            fetch(`http://localhost:8000/predict?sentence=${encodeURIComponent(sentence)}`)
-            .then((response) => response.json())
-            .then((data) => {
-                setPrediction(data.emotion);
-                console.log(data.emotion);
-            })
-            .catch((error) => {
-                console.error("Error fetching prediction:", error);
-            });
-        } else {
-            setPrediction("");
-        }
-    };
-
     useEffect(() => {
+        const sendTextToModel = () => {
+            if (sentence.trim() !== "") {
+                fetch(`http://localhost:8000/predict?sentence=${encodeURIComponent(sentence)}`)
+                .then((response) => response.json())
+                .then((data) => {
+                    setPrediction(data.emotion);
+                    console.log(data.emotion);
+                })
+                .catch((error) => {
+                    console.error("Error fetching prediction:", error);
+                });
+            } else {
+                setPrediction("");
+            }
+        };
+    
         sendTextToModel();
-    }, [sentence]);
+    }, [sentence]);    
 
     return (
         <>

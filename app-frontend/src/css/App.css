@@ -7,3 +7,27 @@
   text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
   letter-spacing: 1px;
 }
+
+@media (max-width: 900px) {
+ #title h1 {
+  font-size: 4.5vw;
+ }
+}
+
+@media (max-width: 650px) {
+  #title h1 {
+   font-size: 5vw;
+  }
+ }
+
+ @media (max-width: 464px) {
+  #title h1 {
+   font-size: 5.5vw;
+  }
+ }
+
+ @media (max-width: 400px) {
+  #title h1 {
+   font-size: 5.7vw;
+  }
+ }

@@ -27,7 +27,12 @@ const App = () => {
     }, [sentence]);
 
     return (
-      <PredictionComponent sentence={sentence} prediction={prediction} setSentence={setSentence} />
+        <>
+        <div id="title">
+            <h1>Emotions Prediction App</h1>
+        </div>
+        <PredictionComponent sentence={sentence} prediction={prediction} setSentence={setSentence} />
+      </>
   );
 };
 

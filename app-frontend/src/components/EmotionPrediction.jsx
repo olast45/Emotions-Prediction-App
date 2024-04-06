@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
-import '../css/PredictionComponent.css'
+import '../css/EmotionPrediction.css'
 
-const PredictionComponent = ({ sentence, prediction, setSentence }) => {
+const EmotionPrediction = ({ sentence, prediction, setSentence }) => {
     return (
         <div id="my-component">
             <h2>Enter a sentence below</h2>
@@ -18,4 +17,4 @@ const PredictionComponent = ({ sentence, prediction, setSentence }) => {
     );
 };
 
-export default PredictionComponent;
+export default EmotionPrediction;

@@ -4,8 +4,11 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
+from nltk.corpus import wordnet
 
 nltk.download('all', quiet=True)
+
+wordnet.ensure_loaded()
 
 def clean_data(text: str) -> str:
 

@@ -9,42 +9,32 @@ const App = () => {
     const [probabilities, setProbabilities] = useState([]);
 
     useEffect(() => {
-        const getPrediction = () => {
+        const getPredictionAndProbabilities = () => {
             if (sentence.trim() !== "") {
                 fetch(`http://localhost:8000/predict?sentence=${encodeURIComponent(sentence)}`)
                 .then((response) => response.json())
                 .then((data) => {
                     setPrediction(data.emotion);
                     console.log(data.emotion);
+                    // After prediction is fetched, fetch probabilities
+                    return fetch(`http://localhost:8000/predict_proba?sentence=${encodeURIComponent(sentence)}`);
                 })
-                .catch((error) => {
-                    console.error("Error fetching prediction:", error);
-                });
-            } else {
-                setPrediction("");
-            }
-        };
-
-        const getProbabilities = () => {
-            if (sentence.trim() !== "") {
-                fetch(`http://localhost:8000/predict_proba?sentence=${encodeURIComponent(sentence)}`)
                 .then((response) => response.json())
                 .then((data) => {
                     setProbabilities(data.probabilities);
                     console.log(data.probabilities);
                 })
                 .catch((error) => {
-                    console.error("Error fetching probabilities:", error);
+                    console.error("Error fetching data:", error);
                 });
-            }
-            else {
+            } else {
+                setPrediction("");
                 setProbabilities("");
             }
         };
     
-        getPrediction();
-        getProbabilities();
-    }, [sentence]);    
+        getPredictionAndProbabilities();
+    }, [sentence]); 
 
     return (
         <>

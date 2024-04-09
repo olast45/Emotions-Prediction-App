@@ -1,0 +1,12 @@
+services:
+  frontend:
+    build: app-frontend/
+    image: frontend-image
+    ports: 
+      - "5030:3000"
+
+  backend:
+    build: app-backend/
+    image: backend-image
+    ports: 
+      - "7010:8000"

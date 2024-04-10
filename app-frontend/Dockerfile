@@ -9,6 +9,9 @@ COPY package.json /frontend
 
 WORKDIR /frontend
 
+ARG REACT_APP_PORT_BACKEND
+ENV REACT_APP_PORT_BACKEND $REACT_APP_PORT_BACKEND
+
 RUN npm install
 CMD ["npm", "start"]
 

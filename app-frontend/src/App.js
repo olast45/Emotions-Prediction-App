@@ -11,13 +11,13 @@ const App = () => {
     useEffect(() => {
         const getPredictionAndProbabilities = () => {
             if (sentence.trim() !== "") {
-                fetch(`http://localhost:7010/predict?sentence=${encodeURIComponent(sentence)}`)
+                fetch(`http://localhost:${process.env.REACT_APP_PORT_BACKEND}/predict?sentence=${encodeURIComponent(sentence)}`)
                 .then((response) => response.json())
                 .then((data) => {
                     setPrediction(data.emotion);
                     console.log(data.emotion);
                     // After prediction is fetched, fetch probabilities
-                    return fetch(`http://localhost:7010/predict_proba?sentence=${encodeURIComponent(sentence)}`);
+                    return fetch(`http://localhost:${process.env.REACT_APP_PORT_BACKEND}/predict_proba?sentence=${encodeURIComponent(sentence)}`);
                 })
                 .then((response) => response.json())
                 .then((data) => {

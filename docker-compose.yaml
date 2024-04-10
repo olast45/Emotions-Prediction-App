@@ -1,0 +1,16 @@
+services:
+  frontend:
+    build:
+      context: app-frontend/
+      args:
+        REACT_APP_PORT_BACKEND: ${PORT_BACKEND}
+    image: frontend-image
+    ports: 
+      - "${PORT_FRONTEND}:3000"
+
+
+  backend:
+    build: app-backend/
+    image: backend-image
+    ports: 
+      - "${PORT_BACKEND}:8000"

@@ -25,7 +25,7 @@ Follow the instructions given here - https://docs.docker.com
     cd Emotions-Prediction-App
 ```
 
-4. Modify the env_example file to specify the host ports for the frontend and backend service sand rename it to .env
+4. Modify the env.example file to specify the host ports for the frontend and backend services sand rename it to .env
 
 5. Build the images for backend and frontend:
 
